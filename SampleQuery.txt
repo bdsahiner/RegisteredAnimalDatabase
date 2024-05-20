@@ -1,0 +1,39 @@
+Dipsplay all the informations about animal which has a color of Black or White and ordered by the youngest to oldest.
+
+SELECT *
+FROM animal
+WHERE animal_color= 'White' or animal_color = 'Black'
+ORDER BY animal_age;
+
+
+Display the count of animal id and summation of all the animal ages, getting the count of all.
+
+SELECT COUNT(animal_id), SUM(animal_age), COUNT(*)
+FROM animal;
+
+
+Display the passport type, owner name and gender who is male and has Personal passport type.
+
+SELECT passport_type,owner_gender,owner_name
+FROM owners o,passports p
+WHERE p.passport_type = 'P' AND o.owner_gender = 'M'
+      AND o.tc_no=p.tc_no;
+       
+
+Display the passport issuedate which is newer than 2011 issued ones. Group them and oder them in descanding order.
+ 
+SELECT passport_issueddate as Pasaport_Duzenlenme_Tarihi
+FROM passports p
+GROUP BY passport_issueddate
+HAVING p.passport_issueddate > '01-JAN-2011'
+ORDER BY  p.passport_issueddate DESC;        
+         
+
+Display owner name,surname, animal name.type and their country name of the animals which is older than the avarage age of country id 991.
+               
+SELECT o.owner_name, o.owner_surname, a.animal_name,a.animal_type, c.country_name
+FROM owners o, animal a, country c
+WHERE o.tc_no = a.tc_no AND c.country_id = o.country_id
+    AND a.animal_age > (SELECT AVG(b.animal_age)
+                    FROM animal b, country s
+                    where s.country_id>991);

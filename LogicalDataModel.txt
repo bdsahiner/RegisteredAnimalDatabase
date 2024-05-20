@@ -1,0 +1,15 @@
+    • COUTRY
+Country_ID(PK), country_name
+
+    • OWNER
+Tc_No(PK) , owner_gender, owner_birthdate, owner,name, owner_surname, owner_phone, owner_mail, Country_id(refer to country-FK)
+
+    • PASSPORT
+Passport_No(PK), passport_type, passport_validdate, passport_issueddate, Tc_No(refer to owner-FK), Country_ID(refer to country-FK)
+
+    • ANIMAL
+Animal_ID(PK),  animal_type, animal_breed, animal_name, animal_birthdate, Tc_No(refer to Owner-FK)
+
+    • CHIP
+Chip_No(PK) , status, chip_validdate, Animal_id(refer to Animal-FK), Passport_No(refer to Passport-FK)
+
